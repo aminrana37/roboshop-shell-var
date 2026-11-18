@@ -95,6 +95,32 @@ setup_component() {
     fi
 }
 
+setup_dispatch() {
+    if {
+        cp dispatch.service /etc/systemd/system/dispatch.service &&
+        dnf install golang -y &&
+        { id roboshop &>/dev/null || useradd roboshop; } &&
+        mkdir -p /app &&
+        curl -fL -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip &&
+        cd /app &&
+        unzip -o /tmp/dispatch.zip &&
+        { [ -f go.mod ] || go mod init dispatch; } &&
+        go get &&
+        go build &&
+        systemctl daemon-reload &&
+        systemctl enable dispatch &&
+        systemctl start dispatch
+    } >> "$log_file" 2>&1; then
+        echo -e "${GREEN}Dispatch setup successful${NC}"
+        echo "Dispatch setup successful" >> "$log_file"
+        return 0
+    else
+        echo -e "${RED}Dispatch setup failed${NC}"
+        echo "Dispatch setup failed" >> "$log_file"
+        return 1
+    fi
+}
+
 reload_and_start_service() {
     if {
         systemctl daemon-reload &&
