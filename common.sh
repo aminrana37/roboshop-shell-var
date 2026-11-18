@@ -49,6 +49,17 @@ copy_component_service_file() {
         return 1
     fi
 }
+
+copy_component_repo() {
+    if {
+        cp "${component}.repo" /etc/yum.repos.d/${component}.repo
+    } >> "$log_file" 2>&1; then
+        echo -e "$copy_success" >> "$log_file" 2>&1
+        return 0
+    else
+        echo -e "$copy_failed" >> "$log_file" 2>&1
+        return 1
+    fi
 }
 
 app_enable_and_restart(){
