@@ -15,4 +15,4 @@ reload_and_start_service &&
 
 dnf install mongodb-mongosh -y >> "$log_file" 2>&1 &&
 
-mongosh --host mongo-dev.mdevsecops.online </app/db/master-data.js >> "$log_file" 2>&1
+mongosh --host mongo-dev.mdevsecops.online < /app/db/master-data.js >> "$log_file" 2>&1
