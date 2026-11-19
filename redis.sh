@@ -1,6 +1,6 @@
 app_name=redis
 app_version="7"
-source=common.sh
+source common.sh
 
 app_setup &&
 

@@ -1,5 +1,5 @@
 component=catalogue
-source=common.sh
+source common.sh
 app_name="nodejs"
 app_version="20"
 

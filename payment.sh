@@ -1,5 +1,5 @@
 component=payment
-source=common.sh
+source common.sh
 
 copy_component_service_file &&
 

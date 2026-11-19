@@ -1,5 +1,5 @@
 component=frontend
-source=common.sh
+source common.sh
 
 app_name="nginx"
 app_version="1.24"

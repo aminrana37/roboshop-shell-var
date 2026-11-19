@@ -1,5 +1,5 @@
 component=dispatch
-source=common.sh
+source common.sh
 
 setup_dispatch 
 

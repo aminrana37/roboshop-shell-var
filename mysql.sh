@@ -1,5 +1,5 @@
 component=mysqld
-source=common.sh
+source common.sh
 
 if {
         dnf install mysql-server -y
