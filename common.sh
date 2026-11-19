@@ -106,6 +106,24 @@ setup_component() {
     fi
 }
 
+setup_python() {
+    if {
+        id roboshop &>/dev/null || useradd roboshop
+        mkdir -p /app &&
+        curl -fL -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip &&
+        cd /app &&
+        unzip -o /tmp/${component}.zip &&
+        cd /app 
+        pip3 install -r requirements.txt
+    } >> "$log_file" 2>&1; then
+        echo -e "${GREEN}${component} setup successful${NC}" >> "$log_file"
+        return 0
+    else
+        echo -e "${RED}${component} setup failed${NC}" >> "$log_file"
+        return 1
+    fi
+}
+
 setup_dispatch() {
     if {
         cp dispatch.service /etc/systemd/system/dispatch.service &&
