@@ -27,7 +27,7 @@ app_setup() {
 }
 
 copy_app_config_file() {
-    if{
+    if {
         cp "${app_name}.conf" "/etc/${app_name}/${app_name}.conf"
     } >> "$log_file" 2>&1; then
         echo -e "$copy_success" >> "$log_file" 2>&1
@@ -39,7 +39,7 @@ copy_app_config_file() {
 }
 
 copy_component_service_file() {
-    if{
+    if {
         cp "${component}.service" "/etc/systemd/system/${component}.service"
     } >> "$log_file" 2>&1; then
         echo -e "$copy_success" >> "$log_file" 2>&1
